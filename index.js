@@ -182,63 +182,61 @@ async function starts() {
 
 				case 'siglas':
 					reply(` 'af': 'Afrikaans',
-						  'sq': 'Albanian',
-						  'ar': 'Arabic',
-						  'hy': 'Armenian',
-						  'ca': 'Catalan',
-						  'zh': 'Chinese',
-						  'zh-cn': 'Chinese (Mandarin/China)',
-						  'zh-tw': 'Chinese (Mandarin/Taiwan)',
-						  'zh-yue': 'Chinese (Cantonese)',
-						  'hr': 'Croatian',
-						  'cs': 'Czech',
-						  'da': 'Danish',
-						  'nl': 'Dutch',
-						  'en': 'English',
-						  'en-au': 'English (Australia)',
-						  'en-uk': 'English (United Kingdom)',
-						  'en-us': 'English (United States)',
-						  'eo': 'Esperanto',
-						  'fi': 'Finnish',
-						  'fr': 'French',
-						  'de': 'German',
-						  'el': 'Greek',
-						  'ht': 'Haitian Creole',
-						  'hi': 'Hindi',
-						  'hu': 'Hungarian',
-						  'is': 'Icelandic',
-						  'id': 'Indonesian',
-						  'it': 'Italian',
-						  'ja': 'Japanese',
-						  'ko': 'Korean',
-						  'la': 'Latin',
-						  'lv': 'Latvian',
-						  'mk': 'Macedonian',
-						  'no': 'Norwegian',
-						  'pl': 'Polish',
-						  'pt': 'Portuguese',
-						  'pt-br': 'Portuguese (Brazil)',
-						  'ro': 'Romanian',
-						  'ru': 'Russian',
-						  'sr': 'Serbian',
-						  'sk': 'Slovak',
-						  'es': 'Spanish',
-						  'es-es': 'Spanish (Spain)',
-						  'es-us': 'Spanish (United States)',
-						  'sw': 'Swahili',
-						  'sv': 'Swedish',
-						  'ta': 'Tamil',
-						  'th': 'Thai',
-						  'tr': 'Turkish',
-						  'vi': 'Vietnamese',
-						  'cy': 'Welsh'`)
-					break
-					
-					
+  'sq': 'Albanian',
+  'ar': 'Arabic',
+  'hy': 'Armenian',
+  'ca': 'Catalan',
+  'zh': 'Chinese',
+  'zh-cn': 'Chinese (Mandarin/China)',
+  'zh-tw': 'Chinese (Mandarin/Taiwan)',
+  'zh-yue': 'Chinese (Cantonese)',
+  'hr': 'Croatian',
+  'cs': 'Czech',
+  'da': 'Danish',
+  'nl': 'Dutch',
+  'en': 'English',
+  'en-au': 'English (Australia)',
+  'en-uk': 'English (United Kingdom)',
+  'en-us': 'English (United States)',
+  'eo': 'Esperanto',
+  'fi': 'Finnish',
+  'fr': 'French',
+  'de': 'German',
+  'el': 'Greek',
+  'ht': 'Haitian Creole',
+  'hi': 'Hindi',
+  'hu': 'Hungarian',
+  'is': 'Icelandic',
+  'id': 'Indonesian',
+  'it': 'Italian',
+  'ja': 'Japanese',
+  'ko': 'Korean',
+  'la': 'Latin',
+  'lv': 'Latvian',
+  'mk': 'Macedonian',
+  'no': 'Norwegian',
+  'pl': 'Polish',
+  'pt': 'Portuguese',
+  'pt-br': 'Portuguese (Brazil)',
+  'ro': 'Romanian',
+  'ru': 'Russian',
+  'sr': 'Serbian',
+  'sk': 'Slovak',
+  'es': 'Spanish',
+  'es-es': 'Spanish (Spain)',
+  'es-us': 'Spanish (United States)',
+  'sw': 'Swahili',
+  'sv': 'Swedish',
+  'ta': 'Tamil',
+  'th': 'Thai',
+  'tr': 'Turkish',
+  'vi': 'Vietnamese',
+  'cy': 'Welsh'`)
+
 				case 'bazukou':
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
-					reply(` @${sender.split('@')[0]} Bazukou ${body.slice(7)}`)
+					reply(` @${sender.split('@')[0]} Bazukou ${body.slice(8)}`)
 					break
 
 
@@ -384,7 +382,7 @@ async function starts() {
 					dtt.length > 600
 					? reply('Dimunui essa bíblia aí, vou ler essa porra toda não')
 					: gtts.save(ranm, dtt, function() {
-						client.sendMessage(from, fs.readFileSync(ranm), audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+						client.sendMessage(from, fs.readFileSync(ranm), audio, {quoted: mek, mimetype: 'audio/ogg; codecs=opus', ptt:true})
 						fs.unlinkSync(ranm)
 					})
 					break
