@@ -172,6 +172,7 @@ async function starts() {
 			
 			switch(comando) {
 				case 'brocha':
+				console.log(color('[WARN]','red'), 'passou aqui', color(sender.split('@')[0]))
 					reply('Citaram o Jorgino?')
 			}
 			
