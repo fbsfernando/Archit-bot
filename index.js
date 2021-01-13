@@ -179,6 +179,17 @@ async function starts() {
 			
 			
 			switch(command) {
+					
+				case 'bazukou':
+				case 'bazucou':
+					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
+					reply(` @${sender.split('@')[0]} Bazukou ${body.slice(7)}`)
+					break
+	
+					
+					
+					
+					
 				case 'help':
 				case 'menu':
 					client.sendMessage(from, help(prefix), text)
