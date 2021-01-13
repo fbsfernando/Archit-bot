@@ -674,7 +674,7 @@ async function starts() {
 						reply(muehe)
 					} else {
 						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
-						reply('Seu esquizo, esse comando não existe')
+						//reply('Seu esquizo, esse comando não existe')
 					}
                            }
 		} catch (e) {
