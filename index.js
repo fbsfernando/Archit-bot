@@ -111,9 +111,10 @@ async function starts() {
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 			body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 			corpo = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
-			const comando = corpo.trim().split(/ +/).shift().toLowerCase()
+			const comando = body.trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
 
@@ -173,23 +174,74 @@ async function starts() {
 			
 			switch(comando) {
 				case 'brocha':
-				console.log(color('[WARN]','red'), 'passou aqui', color(sender.split('@')[0]))
 					reply('Citaram o Jorgino?')
+					break
 			}
-			
-			
+
 			switch(command) {
-					
+
+				case 'siglas':
+					reply(` 'af': 'Afrikaans',
+  'sq': 'Albanian',
+  'ar': 'Arabic',
+  'hy': 'Armenian',
+  'ca': 'Catalan',
+  'zh': 'Chinese',
+  'zh-cn': 'Chinese (Mandarin/China)',
+  'zh-tw': 'Chinese (Mandarin/Taiwan)',
+  'zh-yue': 'Chinese (Cantonese)',
+  'hr': 'Croatian',
+  'cs': 'Czech',
+  'da': 'Danish',
+  'nl': 'Dutch',
+  'en': 'English',
+  'en-au': 'English (Australia)',
+  'en-uk': 'English (United Kingdom)',
+  'en-us': 'English (United States)',
+  'eo': 'Esperanto',
+  'fi': 'Finnish',
+  'fr': 'French',
+  'de': 'German',
+  'el': 'Greek',
+  'ht': 'Haitian Creole',
+  'hi': 'Hindi',
+  'hu': 'Hungarian',
+  'is': 'Icelandic',
+  'id': 'Indonesian',
+  'it': 'Italian',
+  'ja': 'Japanese',
+  'ko': 'Korean',
+  'la': 'Latin',
+  'lv': 'Latvian',
+  'mk': 'Macedonian',
+  'no': 'Norwegian',
+  'pl': 'Polish',
+  'pt': 'Portuguese',
+  'pt-br': 'Portuguese (Brazil)',
+  'ro': 'Romanian',
+  'ru': 'Russian',
+  'sr': 'Serbian',
+  'sk': 'Slovak',
+  'es': 'Spanish',
+  'es-es': 'Spanish (Spain)',
+  'es-us': 'Spanish (United States)',
+  'sw': 'Swahili',
+  'sv': 'Swedish',
+  'ta': 'Tamil',
+  'th': 'Thai',
+  'tr': 'Turkish',
+  'vi': 'Vietnamese',
+  'cy': 'Welsh'`)
+
 				case 'bazukou':
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
 					reply(` @${sender.split('@')[0]} Bazukou ${body.slice(7)}`)
 					break
-	
-					
-					
-					
-					
+
+
+
+
 				case 'help':
 				case 'menu':
 					client.sendMessage(from, help(prefix), text)
