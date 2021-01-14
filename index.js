@@ -239,7 +239,7 @@ async function starts() {
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
 					bazukado = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]} até ${bazuks[Math.floor(Math.random() * 12)]} . A chance de engravidar é de ${aleat.tostring()} %`, bazukado, true)
+					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]} até ${bazuks[Math.floor(Math.random() * 12)]} . A chance de engravidar é de ${aleat.toString()} %`, bazukado, true)
 					break
 
 				case 'marion':
