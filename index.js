@@ -163,6 +163,7 @@ async function starts() {
 			}
 
 			colors = ['red','white','black','blue','yellow','green']
+			bazuks = ['estrondar','zunzunar','estourar','minudenciar','amassar','pormenorizar','esmiuçar','rebombar','petrificar','desaparecer','pulverizar','centrifugar']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
 			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
@@ -237,11 +238,12 @@ async function starts() {
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
 					bazukado = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]}`, bazukado, true)
+					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]} até ${bazuks[Math.floor(Math.random() * 12)]} `, bazukado, true)
 					break
 
-
-
+				case 'marion':
+					reply('────────────────────────\n─────────▄▀▀▀▀▀▀▀▄──────\n────────█▒▒▒▒▒▒▒▒▒█─────\n───────▄▀▒▒▒▒▒▒▒▒▄▀─────\n──────█▒▒▒▒▒▒▒▒▒▒█──────\n─────▄▀▒▄▄▄▒▄▄▄▒▒█─NÃO──\n─────█▒▒─▀─▒─▀─▒▒█─BAN──\n─────█▒▒▒▒▒▒▒▒▒▒▒█──JINX─\n────▄▀▒▒▒▀▄▄▄▀▒▒▒▒▀▀▄─────▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄─\n─█▒▒▒▒▒▒▒MARI ON ▒▒▒▒█▒▒█─\n─▀▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▀─\n───█▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█───\n───▀█▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▀───\n─────█▒▒▌▌▌▌▌▌▌▌▌▒▒█────\n──────▀▀─────────▀▀─────')
+					break
 
 				case 'help':
 				case 'menu':
