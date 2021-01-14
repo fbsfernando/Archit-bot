@@ -236,7 +236,8 @@ async function starts() {
 				case 'bazukou':
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
-					reply(` @${sender.split('@')[0]} Bazukou ${body.slice(8)}`)
+					bazukado = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]}`, mentioned, true)
 					break
 
 
@@ -382,7 +383,7 @@ async function starts() {
 					dtt.length > 600
 					? reply('Dimunui essa bíblia aí, vou ler essa porra toda não')
 					: gtts.save(ranm, dtt, function() {
-						client.sendMessage(from, fs.readFileSync(ranm), audio, {quoted: mek, mimetype: 'video/mp4', ptt:true})
+						client.sendMessage(from, fs.readFileSync(ranm), audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 						fs.unlinkSync(ranm)
 					})
 					break
