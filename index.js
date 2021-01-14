@@ -163,6 +163,7 @@ async function starts() {
 			}
 
 			colors = ['red','white','black','blue','yellow','green']
+			aleat = Math.floor(Math.random() * 101)
 			bazuks = ['estrondar','zunzunar','estourar','minudenciar','amassar','pormenorizar','esmiuçar','rebombar','petrificar','desaparecer','pulverizar','centrifugar']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
@@ -238,7 +239,7 @@ async function starts() {
 				case 'bazucou':
 					if (args.length < 1) return reply('Quer bazukar o vento? Marca alguém aí, mamute')
 					bazukado = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]} até ${bazuks[Math.floor(Math.random() * 12)]} . A chance de engravidar é de Math.floor(Math.random() * 101) %`, bazukado, true)
+					mentions(`@${sender.split('@')[0]} Bazukou @${bazukado[0].split('@')[0]} até ${bazuks[Math.floor(Math.random() * 12)]} . A chance de engravidar é de ${aleat.tostring()} %`, bazukado, true)
 					break
 
 				case 'marion':
