@@ -791,7 +791,7 @@ async function starts() {
 						mentions(teks, mentioned, true)
 						client.groupRemove(from, mentioned)
 					} else {
-						mentions(`Perintah di terima, mengeluarkan : @${mentioned[0].split('@')[0]}`, mentioned, true)
+						mentions(` @${mentioned[0].split('@')[0]} foi de base`, mentioned, true)
 						client.groupRemove(from, mentioned)
 					}
 					break
