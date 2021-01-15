@@ -40,8 +40,8 @@ var game_ativ = false;
 function velha(casas, x, y, player){
 	var sig = null;
 	if (verificar_casa(casas, x, y)!=0){
-		if (player == 1) sig = ⭕
-		if (player == 2) sig = ❌
+		if (player == 1) sig = º
+		if (player == 2) sig = ª
 		casas[x][y]=sig
 	client.sendMessage(from, verificar_win(casas), text)
 	}
@@ -50,47 +50,47 @@ function velha(casas, x, y, player){
 function verificar_win(casas){
 
 
-	if (casas[0][0]&&casas[0][1]&&casas[0][2] == ⭕) {
+	if (casas[0][0]&&casas[0][1]&&casas[0][2] == º) {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == ❌) {
+	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == ª) {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ⭕) {
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == º) {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ❌) {
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ª) {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ⭕) {
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == º) {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ❌) {
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ª) {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ⭕) {
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == º) {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ❌) {
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ª) {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ⭕) {
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == º) {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ❌) {
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ª) {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
@@ -203,15 +203,15 @@ async function starts() {
 				wait: '⌛ Espera aí corno ⌛',
 				success: '✔️ Sou brabor, funcionou ✔️',
 				error: {
-					stick: '❌ Travei, tentei converter a imagem em sticker mas n deu n menó ❌',
-					Iv: '❌ Link inválido ❌'
+					stick: 'ª Travei, tentei converter a imagem em sticker mas n deu n menó ª',
+					Iv: 'ª Link inválido ª'
 				},
 				only: {
-					group: '❌ Esse comando só pode ser usado em grupos! ❌',
-					ownerG: '❌ Esse comando só pode ser usado pelo dono do grupo! ❌',
-					ownerB: '❌ Esse comando só pode ser usado pelo dono do bot! ❌',
-					admin: '❌ Esse comando só pode ser usado pelos ademiros do grupo! ❌',
-					Badmin: '❌ Esse comando só pode ser usado quando o bot virar ademir! ❌'
+					group: 'ª Esse comando só pode ser usado em grupos! ª',
+					ownerG: 'ª Esse comando só pode ser usado pelo dono do grupo! ª',
+					ownerB: 'ª Esse comando só pode ser usado pelo dono do bot! ª',
+					admin: 'ª Esse comando só pode ser usado pelos ademiros do grupo! ª',
+					Badmin: 'ª Esse comando só pode ser usado quando o bot virar ademir! ª'
 				}
 			}
 
@@ -433,7 +433,7 @@ async function starts() {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
 								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(`❌ Falha ao converter ${tipe} em sticker`)
+								reply(`ª Falha ao converter ${tipe} em sticker`)
 							})
 							.on('end', function () {
 								console.log('Finish')
@@ -519,15 +519,15 @@ async function starts() {
 					break
 				/*case 'loli':
 					loli.getSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
+						if (err) return reply('ª *ERROR* ª')
 						buffer = await getBuffer(res.url)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
 					})
 					break
 				case 'nsfwloli':
-					if (!isNsfw) return reply('❌ *FALSE* ❌')
+					if (!isNsfw) return reply('ª *FALSE* ª')
 					loli.getNSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
+						if (err) return reply('ª *ERROR* ª')
 						buffer = await getBuffer(res.url)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
 					})
@@ -770,14 +770,14 @@ async function starts() {
                                         }
                                         break
 				case 'toimg':
-					if (!isQuotedSticker) return reply('❌ Marca um sticker aí, gado ❌')
+					if (!isQuotedSticker) return reply('ª Marca um sticker aí, gado ª')
 					reply(mess.wait)
 					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
-						if (err) return reply('❌ Travei, vc fez alguma merda ❌')
+						if (err) return reply('ª Travei, vc fez alguma merda ª')
 						buffer = fs.readFileSync(ran)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: '>//<'})
 						fs.unlinkSync(ran)
