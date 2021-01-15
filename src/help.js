@@ -21,12 +21,6 @@ uso : só envia o comando aí\n
 comando : *${prefix}gtts*
 desc : converte o texto em fala/audio
 uso : *${prefix}gtts [cc] [text]*\exemplo : *${prefix}gtts pt mariluvaitomarnocu*\n
-comando : *${prefix}loli* -vou tirar essa porra
-desc : apenas imagem aleatória de loli
-uso : só envia o comando aí\n
-comando : *${prefix}nsfwloli* _se usar isso = ban_
-desc : imagem random de loli nsfw ~cleyd que pediu~
-uso : só manda o comando aí\n
 comando : *${prefix}url2img*
 desc : tira print de uma página web
 uso : *${prefix}url2img [tipe] [url]*\n
@@ -74,7 +68,7 @@ uso : só manda o comando aí
 note : Só pode ser usado pelos ademiros\n
 comando : *${prefix}simih*
 desc : ativa o modo SimSimi
-uso : *${prefix}simih 1* para ativar o modo e *${prefix}simih 0* pada desativar o modo
+uso : *${prefix}simih 1* para ativar e *${prefix}simih 0* para desativar
 note : Só pode ser usado pelos ademiros\n`
 }
 
