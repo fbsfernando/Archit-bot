@@ -322,7 +322,7 @@ async function starts() {
 				case 'vemx1lixo':
 					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
 
-					if (game_ativ){
+					if (game_ativ==false){
 
 						game_ativ = true
 
