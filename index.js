@@ -165,7 +165,7 @@ async function starts() {
 
 				teks = `Dale @${num.split('@')[0]} ✌️🍃\nSeja bem vindo a *${mdata.subject}*, também conhecida como o grupo mais podre da twitch 🤢🤮`
 				//let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, { url: 'src/welc.gif' }, MessageType.video, {mimetype: Mimetype.gif,caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, { url: 'src/welc.mp4' }, MessageType.video, {mimetype: Mimetype.gif,caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 
@@ -177,7 +177,7 @@ async function starts() {
 
 				teks = `Já vai tarde @${num.split('@')[0]}👋`
 				//let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, { url: 'src/ban.gif' }, MessageType.video, {mimetype: Mimetype.gif, caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, { url: 'src/ban.mp4' }, MessageType.video, {mimetype: Mimetype.gif, caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
