@@ -26,6 +26,87 @@ const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 prefix = '.'
 blocked = []
 
+
+var casas = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null]
+];
+var posx = null;
+var posy = null;
+var player = null;
+var game_ativ = false;
+
+function velha(casas, x, y, player){
+	var sig = null;
+	if (verificar_casa(casas, x, y)!=0){
+		if (player == 1) sig = ⭕
+		if (player == 2) sig = ❌
+		casas[x][y]=sig
+	client.sendMessage(from, verificar_win(casas), text)
+	}
+}
+
+function verificar_win(casas){
+
+
+	if (casas[0][0]&&casas[0][1]&&casas[0][2] == ⭕) {
+		game_ativ = false
+		return client.sendMessage(from, `player 1 ganhou`, text)
+	}
+	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == ❌) {
+		game_ativ = false
+		return client.sendMessage(from, `player 2 ganhou`, text)
+	}
+
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ⭕) {
+		game_ativ = false
+		return client.sendMessage(from, `player 1 ganhou`, text)
+	}
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ❌) {
+		game_ativ = false
+		return client.sendMessage(from, `player 2 ganhou`, text)
+	}
+
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ⭕) {
+		game_ativ = false
+		return client.sendMessage(from, `player 1 ganhou`, text)
+	}
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ❌) {
+		game_ativ = false
+		return client.sendMessage(from, `player 2 ganhou`, text)
+	}
+
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ⭕) {
+		game_ativ = false
+		return client.sendMessage(from, `player 1 ganhou`, text)
+	}
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ❌) {
+		game_ativ = false
+		return client.sendMessage(from, `player 2 ganhou`, text)
+	}
+
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ⭕) {
+		game_ativ = false
+		return client.sendMessage(from, `player 1 ganhou`, text)
+	}
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ❌) {
+		game_ativ = false
+		return client.sendMessage(from, `player 2 ganhou`, text)
+	}
+
+	else if (casas[0][0]&&casas[0][1]&&casas[0][2]&&casas[1][0]&&casas[1][2]&&casas[1][3]&&casas[2][0]&&casas[2][1]&&casas[2][2] != null) return client.sendMessage(from, 'Os dois são podres, ninguém ganhou', text)
+
+	return client.sendMessage(from, `aguardando o outro player...`, text)
+
+}
+
+
+function verificar_casa(casas, x, y){
+	if (casas[x][y]!= null) return 0
+	else return 1
+}
+
 function kyun(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
@@ -182,7 +263,7 @@ async function starts() {
 
 			switch(command) {
 
-				case 'siglas':
+				case 'idiomas':
 					reply(` 'af': 'Afrikaans',
   'sq': 'Albanian',
   'ar': 'Arabic',
@@ -234,6 +315,36 @@ async function starts() {
   'tr': 'Turkish',
   'vi': 'Vietnamese',
   'cy': 'Welsh'`)
+					break
+
+
+
+				case 'vemx1lixo':
+					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
+
+					if (game_ativ){
+
+						game_ativ = true
+
+						desafiado = mek.message.extendedTextMessage.contextInfo.mentionedJid
+
+						desafiador = ${sender.split('@')[0]}
+
+						mentions(`@${desafiado[0].split('@')[0]} você foi dasafiado para o jogo da velha, aceitas? .vemlixo para aceitar / .arreguei`, desafiado, true)
+					}
+
+					else{
+						client.sendMessage(from, 'Já tem jogo ativo, calma ae.', text)
+					}
+
+
+					break
+
+
+
+
+
+
 
 				case 'bazukou':
 				case 'bazucou':
