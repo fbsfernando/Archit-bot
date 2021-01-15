@@ -36,13 +36,18 @@ var posx = null;
 var posy = null;
 var player = null;
 var game_ativ = false;
+var player1 = null;
+var player2 = null;
 
 function velha(casas, x, y, player){
 	var sig = null;
 	if (verificar_casa(casas, x, y)!=0){
-		if (player == 1) sig = ª
-		if (player == 2) sig = º
+		if (player == 1) sig = '❌'
+		if (player == 2) sig = '⭕'
 		casas[x][y]=sig
+
+	imprime_jogo(casas)
+
 	client.sendMessage(from, verificar_win(casas), text)
 	}
 }
@@ -50,47 +55,47 @@ function velha(casas, x, y, player){
 function verificar_win(casas){
 
 
-	if (casas[0][0]&&casas[0][1]&&casas[0][2] == ª) {
+	if (casas[0][0]&&casas[0][1]&&casas[0][2] == '❌') {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == º) {
+	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == "⭕") {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == ª) {
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == '❌') {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == º) {
+	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == "⭕") {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == ª) {
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == '❌') {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == º) {
+	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == '⭕') {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == ª) {
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == '❌') {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == º) {
+	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == '⭕') {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
 
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == ª) {
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == '❌') {
 		game_ativ = false
 		return client.sendMessage(from, `player 1 ganhou`, text)
 	}
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == º) {
+	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == '⭕') {
 		game_ativ = false
 		return client.sendMessage(from, `player 2 ganhou`, text)
 	}
@@ -101,6 +106,13 @@ function verificar_win(casas){
 
 }
 
+
+
+function imprime_jogo(casas){
+	for(let casa of casas){
+
+	}
+}
 
 function verificar_casa(casas, x, y){
 	if (casas[x][y]!= null) return 0
@@ -149,7 +161,7 @@ async function starts() {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `Halo @${num.split('@')[0]}\nSelamat datang di group *${mdata.subject}*`
+				teks = `Dale @${num.split('@')[0]} ✌️🍃\nSeja bem vindo a *${mdata.subject}*, também conhecida como o grupo mais podre da twitch 🤢🤮`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -159,7 +171,7 @@ async function starts() {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `Sayonara @${num.split('@')[0]}👋`
+				teks = `Já vai tarde @${num.split('@')[0]}👋`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
@@ -327,10 +339,12 @@ async function starts() {
 						game_ativ = true
 
 						desafiado = mek.message.extendedTextMessage.contextInfo.mentionedJid
+						player2 = desafiado
 
 						desafiador = sender.split('@')[0]
+						player1vez = desafiador
 
-						mentions(`@${desafiado[0].split('@')[0]} você foi dasafiado para o jogo da velha, aceitas? .vemlixo para aceitar / .arreguei`, desafiado, true)
+						mentions(`@${desafiado[0].split('@')[0]} você foi dasafiado para o jogo da velha, aceitas? \n .vemlixo @quem_te_chamou/ .arreguei @quem_te_chamou`, desafiado, true)
 					}
 
 					else{
@@ -338,10 +352,47 @@ async function starts() {
 					}
 
 
-					break
+				break
+
+				case 'vemlixo':
+					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
+					if (game_ativ==false) return reply('Ninguém te chamou pra jogo nenhum, seu abortado.')
 
 
+					else{
+						player2vez = sender.split('@')[0]
+						player1 = mek.message.extendedTextMessage.contextInfo.mentionedJid
+						vez = player1vez
+						mentions(`@${player1[0].split('@')[0]} É a sua vez, escolha uma casa \n⏹️  0   1    2
+0  ❌|❌|❌
+    ------------
+1  ❌|❌|❌
+    ------------
+2  ❌|❌|❌\n EX: .casa A1`, player1, true)
 
+					}
+
+				case 'jogar':
+					if (args.length < 1) return reply('Escolhe a casa que você vai jogar aí, mamute.')
+
+					if (vez==sender.split('@')[0] && vez == player1vez) {
+						posicao = args.split('')
+
+						velha(casas, posicao[0], posicao[1], 1)
+
+						casas[posicao[0]][posicao[1]]='❌'
+						vez = player2vez
+
+					}
+					if (vez==sender.split('@')[0] && vez == player2vez) {
+						posicao = args.split('')
+
+						velha(casas, posicao[0], posicao[1], 2)
+
+
+						casas[posicao[0]][posicao[1]]='⭕'
+						vez = player1vez
+					}
 
 
 
