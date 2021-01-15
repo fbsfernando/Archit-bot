@@ -357,23 +357,23 @@ async function starts() {
 				case 'vemlixo':
 					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
 					if (game_ativ==false) return reply('Ninguém te chamou pra jogo nenhum, seu abortado.')
+					sumber=sender.split('@')[0]
 
-
-					else{
+					else if(player2=={contextInfo: {"mentionedJid": sumber}}){
 						player2vez = sender.split('@')[0]
 						player1 = mek.message.extendedTextMessage.contextInfo.mentionedJid
 						vez = player1vez
-						mentions(`@${player1[0].split('@')[0]} É a sua vez, escolha uma casa \n⏹️  0   1    2
+						mentions(`@${player1[0].split('@')[0]} É a sua vez, escolha uma casa \n⏹️    0    1     2
 0  ❌|❌|❌
-    ------------
+    ----------------
 1  ❌|❌|❌
-    ------------
-2  ❌|❌|❌\n EX: .casa A1`, player1, true)
-
+    ----------------
+2  ❌|❌|❌\n \nEX: .casa 21\n`, player1, true)
 					}
+					break
 
 				case 'jogar':
-					if (args.length < 1) return reply('Escolhe a casa que você vai jogar aí, mamute.')
+					if (args.length < 1) return reply('Escolhe a casa que você vai jogar, mamute.')
 
 					if (vez==sender.split('@')[0] && vez == player1vez) {
 						posicao = args.split('')
@@ -395,7 +395,7 @@ async function starts() {
 					}
 
 
-
+					break
 
 				case 'bazukou':
 				case 'bazucou':
