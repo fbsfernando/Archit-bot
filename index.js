@@ -157,23 +157,23 @@ async function starts() {
 			if (anu.action == 'add') {
 				num = anu.participants[0]
 				try {
-					ppimg = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+					ppimg = 'https://giphy.com/gifs/hE5NMSDJTRwM22rOuL/html5'
 				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+					ppimg = 'https://giphy.com/gifs/hE5NMSDJTRwM22rOuL/html5'
 				}
 				teks = `Dale @${num.split('@')[0]} ✌️🍃\nSeja bem vindo a *${mdata.subject}*, também conhecida como o grupo mais podre da twitch 🤢🤮`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, buff, MessageType.video, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 				try {
-					ppimg = await client.getProfilePicture(`${num.split('@')[0]}@c.us`)
+					ppimg = 'https://giphy.com/gifs/8DyXPGfPhQu64LPAvn/html5'
 				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+					ppimg = 'https://giphy.com/gifs/8DyXPGfPhQu64LPAvn/html5'
 				}
 				teks = `Já vai tarde @${num.split('@')[0]}👋`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, buff, MessageType.video, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
@@ -359,7 +359,7 @@ async function starts() {
 					if (game_ativ==false) return reply('Ninguém te chamou pra jogo nenhum, seu abortado.')
 					sumber=sender.split('@')[0]
 
-					if(player2=={contextInfo: {"mentionedJid": sumber}}){
+					else if(player2=={contextInfo: {"mentionedJid": sumber}}){
 						player2vez = sender.split('@')[0]
 						player1 = mek.message.extendedTextMessage.contextInfo.mentionedJid
 						vez = player1vez
@@ -828,7 +828,7 @@ async function starts() {
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
-						if (err) return reply('❌ Travei, vc fez alguma merda ❌')
+						if (err) return reply('❌ Travei! Vc fez alguma merda ❌')
 						buffer = fs.readFileSync(ran)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: '>//<'})
 						fs.unlinkSync(ran)
