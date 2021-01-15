@@ -359,7 +359,7 @@ async function starts() {
 					if (game_ativ==false) return reply('Ninguém te chamou pra jogo nenhum, seu abortado.')
 					sumber=sender.split('@')[0]
 
-					else if(player2=={contextInfo: {"mentionedJid": sumber}}){
+					if(player2=={contextInfo: {"mentionedJid": sumber}}){
 						player2vez = sender.split('@')[0]
 						player1 = mek.message.extendedTextMessage.contextInfo.mentionedJid
 						vez = player1vez
