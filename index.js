@@ -416,7 +416,7 @@ async function starts() {
 				case 'prisão'
 
 
-					reply(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
+					client.sendMessage(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
 
 					break
 				case 'help':
