@@ -413,10 +413,10 @@ async function starts() {
 					break
 
 					
-				case 'prisão'
+				case 'prisão':
 
 
-					client.sendMessage(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
+					reply(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
 
 					break
 				case 'help':
