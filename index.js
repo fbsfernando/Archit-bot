@@ -412,6 +412,13 @@ async function starts() {
 					reply('────────────────────────\n─────────▄▀▀▀▀▀▀▀▄──────\n────────█▒▒▒▒▒▒▒▒▒█─────\n───────▄▀▒▒▒▒▒▒▒▒▄▀─────\n──────█▒▒▒▒▒▒▒▒▒▒█──────\n─────▄▀▒▄▄▄▒▄▄▄▒▒█─NÃO──\n─────█▒▒─▀─▒─▀─▒▒█─BAN──\n─────█▒▒▒▒▒▒▒▒▒▒▒█──JINX─\n────▄▀▒▒▒▀▄▄▄▀▒▒▒▒▀▀▄─────▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄─\n─█▒▒▒▒▒▒▒MARI ON ▒▒▒▒█▒▒█─\n─▀▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▀─\n───█▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█───\n───▀█▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▀───\n─────█▒▒▌▌▌▌▌▌▌▌▌▒▒█────\n──────▀▀─────────▀▀─────')
 					break
 
+					
+				case 'prisão'
+
+
+					reply(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
+
+					break
 				case 'help':
 				case 'menu':
 					client.sendMessage(from, help(prefix), text)
