@@ -415,25 +415,25 @@ async function starts() {
 					
 				case 'prisão':
 
-					client.sendMessage(from, url: 'src/prisao.png', image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
+					client.sendMessage(from, { url: 'src/prisao.png' }, image, {quoted: mek, caption: 'Operação Mata Vermes concluída com sucesso!'})
 
 					break
 
 				case 'acad':
 
-					client.sendMessage(from, url: 'src/acad.png', image, {quoted: mek, caption: 'Marilas malhou foi pouco! 💪 #BumbumNaNuca'})
+					client.sendMessage(from, { url: 'src/acad.png' }, image, {quoted: mek, caption: 'Marilas malhou foi pouco! 💪 #BumbumNaNuca'})
 
 					break
 
 				case 'cleycley':
 
-					client.sendMessage(from, url: 'src/cleycley.png', image, {quoted: mek, caption: '❌Indivíduo de alta periculosidade, matenha distância!❌'})
+					client.sendMessage(from, { url: 'src/cleycley.png' }, image, {quoted: mek, caption: '❌Indivíduo de alta periculosidade, matenha distância!❌'})
 
 					break
 
 				case 'cachorro':
 
-					client.sendMessage(from, url: 'src/cachorro.png', image, {quoted: mek, caption: 'Pernocas de bailarina '})
+					client.sendMessage(from, { url: 'src/cachorro.png' }, image, {quoted: mek, caption: 'Pernocas de bailarina '})
 
 					break
 				case 'help':
