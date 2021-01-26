@@ -684,6 +684,129 @@ async function starts() {
 					}
 					mentions(teks, members_id, true)
 					break
+				case 'tagmamacos':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					members_id = []
+					
+					teks = '🇧🇷VAI TOMAR NO PEIXE EVOLUTIVO 🇧🇷
+
+ŚÓ USA EVOLUÇÃO QUEM NĀO SƏ GARÅNŢE NØ SOCO 🦍🦍🦍‼️‼️‼️
+
+.                 /¯/)              \¯\
+                /¯  /                 \  ¯\
+              /    /                     \    \
+       /´¯/'   '/´¯`•¸          ¸•´¯`\'   '\´¯\
+    /'/   /    /     /¯\  /¯`\    \   \    \  '\
+ (   (   (   ( ¯  /'   ')  ('    '\ ¯  )   )  )   )
+   \                       /  \                        /
+     \                   /       \                   /
+      (                  \        /                  )
+
+🔥🦍🦍🦍 ÅŤÅQŮĘ ĐØ§ MAMACO ĽØĶØ🦍🦍🦍🔥
+👉😎👉
+👉😎👉
+ AGORA É NOIS QUE MANDA NESSA PORRA
+☣☣☣👿
+🦍🦍🤝🦍🦍
+
+OS SOLADORES DE LARGATIXA ESTÃO PASSANDO POR VOCÊ 🦎🦎🦎
+▬▬▬.◙.▬▬▬ 
+═▂▄▄▓▄▄▂ 
+◢◤ █▀🐒▀████▄▄▄▄◢◤ 
+█▄ █ー ███▀▀▀▀▀▀▀╬ 
+◥█████◤ 
+══╩══╩═ Desafiamos todos os largatinho
+╬╬ 
+╬╬ 
+╬╬ 
+╬╬//
+A DESAFIAR O GRANDE REI KONG🦍🦍🔥🔥🔥
+
+MITOOOOOOOOOO King  👉😎👉
+SEGUE A RISADA DO MAMACO:
+KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+LARGATINHA TEM QUE SE FODER E ACABOU PORRA 🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🦍🦍🐒🐒🐒🦍🦍🦍
+
+▕▇▇▇◤▔▔▔▔▔▔▔◥▇▇▇
+▕▇▇▇▏◥▇◣┊◢▇◤▕▇▇▇
+▕▇▇▇▏▃▆▅▎▅▆▃▕▇▇▇
+▕▇▇▇▏╱▔▕▎▔▔╲▕▇▇▇
+▕▇▇▇◣◣▃▅▎▅▃◢◢▇▇▇
+▕▇▇▇▇◣◥▅▅▅◤◢▇▇▇▇
+▕▇▇▇▇▇◣╲▇╱◢▇▇▇▇▇
+▕▇▇▇▇▇▇◣▇◢▇▇▇▇▇▇
+unhe     unhe  unhe unhe 
+unhe     unhe  unhe unhe
+unhe                      unhe 
+unhe                    unhe 
+unhe                  unhe 
+unhe                unhe 
+unhe              unhe 
+unhe            unhe 
+unhe          unhe 
+unhe        unhe 
+unhe       unhe
+
+unhe     unhe  unhe unhe 
+unhe     unhe  unhe unhe
+unhe                      unhe 
+unhe                    unhe 
+unhe                  unhe 
+unhe                unhe 
+unhe              unhe 
+unhe            unhe 
+unhe          unhe 
+unhe        unhe 
+unhe       unhe
+
+unhe     unhe  unhe unhe 
+unhe     unhe  unhe unhe
+unhe                      unhe 
+unhe                    unhe 
+unhe                  unhe 
+unhe                unhe 
+unhe              unhe 
+unhe            unhe 
+unhe          unhe 
+unhe        unhe 
+unhe       unhe
+
+Facção KING 💪🏼🙈 O bonde dos mamaco ataca novamente 🦍🦍🦍 vai chorar 🦎? 😭😭 King acima de tudo, Kong encima de todos ✊✊ tá em shock ⚡⚡ 😯😯😳😳😳😳😳 fica Flinstons aí Godzilla corn0👋👋🥗🥗 Avante King 🏁🏁🏁🏁🏁🏁VAI TOMA NO CU ZILLA
+................./¯/)............(\¯\
+.............../¯ ./..............\. ¯\
+............./. . /................ \ . .\
+......../´¯/' . '/´¯`•¸,....,•´¯`\' . '\´¯\
+..../' /. ./ . ./ . ./¯\../¯\. . \. . \. .\ '\
+..( . ( . ( . ( ¯ ./' . ')..(' . '\. ¯ ) . ) . ) . )
+...\ . . . . . . . . . . ./...\. . . . . . . . . . ./
+.....\ . . . . . . . . ./......\. . . . . . . . . /
+.....(. . . . . . . . . \......./. . . . . . . . . )
+ÅŤÅQŮĘ ĐØ MĄMÅČØ LØKØ💨 AGORA É NOS QUE MANDA NESSA PORRA 
+☣☣☣👿
+👹 SAIAM DO GRUPO 👹
+COMEÇOU A SOLAÇÃO 
+HÁ! HÁ! HÁ! HÁ! HÁ!
+🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻
+VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ
+▕▇▇▇◤▔▔▔▔▔▔▔◥▇▇▇
+▕▇▇▇▏◥▇◣┊◢▇◤▕▇▇▇
+▕▇▇▇▏▃▆▅▎▅▆▃▕▇▇▇
+▕▇▇▇▏╱▔▕▎▔▔╲▕▇▇▇
+▕▇▇▇◣◣▃▅▎▅▃◢◢▇▇▇
+▕▇▇▇▇◣◥▅▅▅◤◢▇▇▇▇
+▕▇▇▇▇▇◣╲▇╱◢▇▇▇▇▇
+▕▇▇▇▇▇▇◣▇◢▇▇▇▇▇▇
+💨MĀMĀČØ ĽØĶØ💨
+̿̿ ̿̿ ̿̿ ̿'̿'\̵͇̿̿\з=🙈=ε/
+
+#teamkong'
+					for (let mem of groupMembers) {
+						teks += `*#* @${mem.jid.split('@')[0]}\n`
+						members_id.push(mem.jid)
+					}
+					mentions(teks, members_id, true)
+					break
                                 case 'tagall2':
 					members_id = []
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
