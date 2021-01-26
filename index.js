@@ -802,7 +802,7 @@ VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ
 
 #teamkong'
 					for (let mem of groupMembers) {
-						teks += `*#* @${mem.jid.split('@')[0]}\n`
+						//teks += `*#* @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
 					mentions(teks, members_id, true)
