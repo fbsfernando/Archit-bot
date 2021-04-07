@@ -420,7 +420,7 @@ async function starts() {
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
 						reply(mess.wait)
-						keyrmbg = 'Your-ApiKey'
+						keyrmbg = '0RaEy5fQuFB6MEfwCWVf'
 						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp}).then(res => {
 							fs.unlinkSync(media)
 							let buffer = Buffer.from(res.base64img, 'base64')
