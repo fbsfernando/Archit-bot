@@ -8,12 +8,11 @@ const {
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./src/help')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
-const { fetchJson } = require('./lib/fetcher')
+const { fetchJson, fetchText } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 const fs = require('fs')
 const moment = require('moment-timezone')
 const { exec } = require('child_process')
-const kagApi = require('@kagchi/kag-api')
 const fetch = require('node-fetch')
 const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
@@ -23,101 +22,9 @@ const loli = new lolis()
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
-prefix = '.'
+const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
+prefix = setting.prefix
 blocked = []
-
-
-var casas = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
-];
-var posx = null;
-var posy = null;
-var player = null;
-var game_ativ = false;
-var player1 = null;
-var player2 = null;
-
-function velha(casas, x, y, player){
-	var sig = null;
-	if (verificar_casa(casas, x, y)!=0){
-		if (player == 1) sig = '❌'
-		if (player == 2) sig = '⭕'
-		casas[x][y]=sig
-
-	imprime_jogo(casas)
-
-	client.sendMessage(from, verificar_win(casas), text)
-	}
-}
-
-function verificar_win(casas){
-
-
-	if (casas[0][0]&&casas[0][1]&&casas[0][2] == '❌') {
-		game_ativ = false
-		return client.sendMessage(from, `player 1 ganhou`, text)
-	}
-	else if (casas[0][0]&&casas[0][1]&&casas[0][2] == "⭕") {
-		game_ativ = false
-		return client.sendMessage(from, `player 2 ganhou`, text)
-	}
-
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == '❌') {
-		game_ativ = false
-		return client.sendMessage(from, `player 1 ganhou`, text)
-	}
-	else if (casas[1][0]&&casas[1][1]&&casas[1][2] == "⭕") {
-		game_ativ = false
-		return client.sendMessage(from, `player 2 ganhou`, text)
-	}
-
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == '❌') {
-		game_ativ = false
-		return client.sendMessage(from, `player 1 ganhou`, text)
-	}
-	else if (casas[2][0]&&casas[2][1]&&casas[2][2] == '⭕') {
-		game_ativ = false
-		return client.sendMessage(from, `player 2 ganhou`, text)
-	}
-
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == '❌') {
-		game_ativ = false
-		return client.sendMessage(from, `player 1 ganhou`, text)
-	}
-	else if (casas[0][0]&&casas[1][1]&&casas[2][2] == '⭕') {
-		game_ativ = false
-		return client.sendMessage(from, `player 2 ganhou`, text)
-	}
-
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == '❌') {
-		game_ativ = false
-		return client.sendMessage(from, `player 1 ganhou`, text)
-	}
-	else if (casas[0][2]&&casas[1][1]&&casas[2][0] == '⭕') {
-		game_ativ = false
-		return client.sendMessage(from, `player 2 ganhou`, text)
-	}
-
-	else if (casas[0][0]&&casas[0][1]&&casas[0][2]&&casas[1][0]&&casas[1][2]&&casas[1][3]&&casas[2][0]&&casas[2][1]&&casas[2][2] != null) return client.sendMessage(from, 'Os dois são podres, ninguém ganhou', text)
-
-	return client.sendMessage(from, `aguardando o outro player...`, text)
-
-}
-
-
-
-function imprime_jogo(casas){
-	for(let casa of casas){
-
-	}
-}
-
-function verificar_casa(casas, x, y){
-	if (casas[x][y]!= null) return 0
-	else return 1
-}
 
 function kyun(seconds){
   function pad(s){
@@ -156,25 +63,21 @@ async function starts() {
 			console.log(anu)
 			if (anu.action == 'add') {
 				num = anu.participants[0]
-
-				//try {
-				//	ppimg = 'https://giphy.com/gifs/hE5NMSDJTRwM22rOuL/html5'
-				//} catch {
-				//	ppimg = 'https://giphy.com/gifs/hE5NMSDJTRwM22rOuL/html5'
-				//}
-
+				/*try {
+					ppimg = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}*/
 				teks = `Dale @${num.split('@')[0]} ✌️🍃\nSeja bem vindo a *${mdata.subject}*, também conhecida como o grupo mais podre da twitch 🤢🤮`
 				//let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, { url: 'src/welc.mp4' }, MessageType.video, {mimetype: Mimetype.gif,caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
-
-				//try {
-				//	ppimg = 'https://giphy.com/gifs/8DyXPGfPhQu64LPAvn/html5'
-				//} catch {
-				//	ppimg = 'https://giphy.com/gifs/8DyXPGfPhQu64LPAvn/html5'
-				//}
-
+				/*try {
+					ppimg = await client.getProfilePicture(`${num.split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}*/
 				teks = `Já vai tarde @${num.split('@')[0]}👋`
 				//let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, { url: 'src/ban.mp4' }, MessageType.video, {mimetype: Mimetype.gif, caption: teks, contextInfo: {"mentionedJid": [num]}})
@@ -194,7 +97,7 @@ async function starts() {
 	client.on('chat-update', async (mek) => {
 		try {
             if (!mek.hasNewMessage) return
-            mek = JSON.parse(JSON.stringify(mek)).messages[0]
+            mek = mek.messages.all()[0]
 			if (!mek.message) return
 			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
 			if (mek.key.fromMe) return
@@ -203,14 +106,12 @@ async function starts() {
 			const content = JSON.stringify(mek.message)
 			const from = mek.key.remoteJid
 			const type = Object.keys(mek.message)[0]
-			const apiKey = '0RaEy5fQuFB6MEfwCWVf'
+			const apiKey = setting.apiKey // contact me on whatsapp wa.me/6285892766102
 			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 			body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
-			corpo = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
-			const comando = body.trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
 
@@ -246,7 +147,6 @@ async function starts() {
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			const ismonkey = monkeyNumber.includes(sender)
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
@@ -271,136 +171,50 @@ async function starts() {
 			if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
 			if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+			let authorname = client.contacts[from] != undefined ? client.contacts[from].vname || client.contacts[from].notify : undefined	
+			if (authorname != undefined) { } else { authorname = groupName }	
 			
-			switch(comando) {
-				case 'brocha':
-					reply('Citaram o Jorgino?')
-					break
+			function addMetadata(packname, author) {	
+				if (!packname) packname = 'WABot'; if (!author) author = 'Bot';	
+				author = author.replace(/[^a-zA-Z0-9]/g, '');	
+				let name = `${author}_${packname}`
+				if (fs.existsSync(`./src/stickers/${name}.exif`)) return `./src/stickers/${name}.exif`
+				const json = {	
+					"sticker-pack-name": packname,
+					"sticker-pack-publisher": author,
+				}
+				const littleEndian = Buffer.from([0x49, 0x49, 0x2A, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x41, 0x57, 0x07, 0x00])	
+				const bytes = [0x00, 0x00, 0x16, 0x00, 0x00, 0x00]	
+
+				let len = JSON.stringify(json).length	
+				let last	
+
+				if (len > 256) {	
+					len = len - 256	
+					bytes.unshift(0x01)	
+				} else {	
+					bytes.unshift(0x00)	
+				}	
+
+				if (len < 16) {	
+					last = len.toString(16)	
+					last = "0" + len	
+				} else {	
+					last = len.toString(16)	
+				}	
+
+				const buf2 = Buffer.from(last, "hex")	
+				const buf3 = Buffer.from(bytes)	
+				const buf4 = Buffer.from(JSON.stringify(json))	
+
+				const buffer = Buffer.concat([littleEndian, buf2, buf3, buf4])	
+
+				fs.writeFile(`./src/stickers/${name}.exif`, buffer, (err) => {	
+					return `./src/stickers/${name}.exif`	
+				})	
+
 			}
-
 			switch(command) {
-
-				case 'idiomas':
-					reply(` 'af': 'Afrikaans',
-  'sq': 'Albanian',
-  'ar': 'Arabic',
-  'hy': 'Armenian',
-  'ca': 'Catalan',
-  'zh': 'Chinese',
-  'zh-cn': 'Chinese (Mandarin/China)',
-  'zh-tw': 'Chinese (Mandarin/Taiwan)',
-  'zh-yue': 'Chinese (Cantonese)',
-  'hr': 'Croatian',
-  'cs': 'Czech',
-  'da': 'Danish',
-  'nl': 'Dutch',
-  'en': 'English',
-  'en-au': 'English (Australia)',
-  'en-uk': 'English (United Kingdom)',
-  'en-us': 'English (United States)',
-  'eo': 'Esperanto',
-  'fi': 'Finnish',
-  'fr': 'French',
-  'de': 'German',
-  'el': 'Greek',
-  'ht': 'Haitian Creole',
-  'hi': 'Hindi',
-  'hu': 'Hungarian',
-  'is': 'Icelandic',
-  'id': 'Indonesian',
-  'it': 'Italian',
-  'ja': 'Japanese',
-  'ko': 'Korean',
-  'la': 'Latin',
-  'lv': 'Latvian',
-  'mk': 'Macedonian',
-  'no': 'Norwegian',
-  'pl': 'Polish',
-  'pt': 'Portuguese',
-  'pt-br': 'Portuguese (Brazil)',
-  'ro': 'Romanian',
-  'ru': 'Russian',
-  'sr': 'Serbian',
-  'sk': 'Slovak',
-  'es': 'Spanish',
-  'es-es': 'Spanish (Spain)',
-  'es-us': 'Spanish (United States)',
-  'sw': 'Swahili',
-  'sv': 'Swedish',
-  'ta': 'Tamil',
-  'th': 'Thai',
-  'tr': 'Turkish',
-  'vi': 'Vietnamese',
-  'cy': 'Welsh'`)
-					break
-
-
-
-				case 'vemx1lixo':
-					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
-
-					if (game_ativ==false){
-
-						game_ativ = true
-
-						desafiado = mek.message.extendedTextMessage.contextInfo.mentionedJid
-						player2 = desafiado
-
-						desafiador = sender.split('@')[0]
-						player1vez = desafiador
-
-						mentions(`@${desafiado[0].split('@')[0]} você foi dasafiado para o jogo da velha, aceitas? \n .vemlixo @quem_te_chamou/ .arreguei @quem_te_chamou`, desafiado, true)
-					}
-
-					else{
-						client.sendMessage(from, 'Já tem jogo ativo, calma ae.', text)
-					}
-
-
-				break
-
-				case 'vemlixo':
-					if (args.length < 1) return reply('Quer jogar sozinho? Marca alguém aí, seu esquizo.')
-					if (game_ativ==false) return reply('Ninguém te chamou pra jogo nenhum, seu abortado.')
-					sumber=sender.split('@')[0]
-
-					if(player2=={contextInfo: {"mentionedJid": sumber}}){
-						player2vez = sender.split('@')[0]
-						player1 = mek.message.extendedTextMessage.contextInfo.mentionedJid
-						vez = player1vez
-						mentions(`@${player1[0].split('@')[0]} É a sua vez, escolha uma casa \n⏹️    0    1     2
-0  ❌|❌|❌
-    ----------------
-1  ❌|❌|❌
-    ----------------
-2  ❌|❌|❌\n \nEX: .casa 21\n`, player1, true)
-					}
-					break
-
-				case 'jogar':
-					if (args.length < 1) return reply('Escolhe a casa que você vai jogar, mamute.')
-
-					if (vez==sender.split('@')[0] && vez == player1vez) {
-						posicao = args.split('')
-
-						velha(casas, posicao[0], posicao[1], 1)
-
-						casas[posicao[0]][posicao[1]]='❌'
-						vez = player2vez
-
-					}
-					if (vez==sender.split('@')[0] && vez == player2vez) {
-						posicao = args.split('')
-
-						velha(casas, posicao[0], posicao[1], 2)
-
-
-						casas[posicao[0]][posicao[1]]='⭕'
-						vez = player1vez
-					}
-
-
-					break
 
 				case 'bazukou':
 				case 'bazucou':
@@ -437,6 +251,15 @@ async function starts() {
 					client.sendMessage(from, { url: 'src/cachorro.png' }, image, {quoted: mek, caption: 'Pernocas de bailarina '})
 
 					break
+
+
+
+
+
+
+
+
+
 				case 'help':
 				case 'menu':
 					client.sendMessage(from, help(prefix), text)
@@ -472,6 +295,61 @@ async function starts() {
 							})
 					} else {
 						reply('Foto aja mas')
+					}
+					break
+				case 'tp':
+					if (args.length < 1) {
+						return reply('Pilih themenya om, 1 - 162')
+					} else if (args[0].toLowerCase() === 'list') {
+						teks = await fetchText('https://mhankbarbar.moe/api/textpro/listtheme')
+						teks = teks.replace(/<br>/g, '\n')
+						return reply(teks)
+					} else if (args.length < 2) {
+						return reply('Teksnya juga dong om')
+					}
+					reply(mess.wait)
+					anu = `https://mhankbarbar.moe/api/textpro?pack=${args[0]}&text=${body.slice(3+args[0].length+1)}&apiKey=${apiKey}`
+					voss = await fetch(anu)	
+					ftype = require('file-type')	
+					vuss = await ftype.fromStream(voss.body)
+					if (vuss !== undefined) {
+						client.sendMessage(from, await getBuffer(anu), image, { caption: mess.success, quoted: mek })
+					} else {
+						reply('Terjadi kesalahan, silahkan pilih theme lain')
+					}
+					break
+				case 'ep':
+					if (args.length < 1) {
+						return reply('Pilih themenya om, 1 - 216')
+					} else if (args[0].toLowerCase() === 'list') {
+						teks = await fetchText('https://mhankbarbar.moe/api/ephoto/listtheme')
+						teks = teks.replace(/<br>/g, '\n')
+						return reply(teks)
+					} else if (args.length < 2) {
+						return reply('Teksnya juga dong om')
+					}
+					reply(mess.wait)
+					anu = `https://mhankbarbar.moe/api/ephoto?pack=${args[0]}&text=${body.slice(3+args[0].length+1)}&apiKey=${apiKey}`
+					voss = await fetch(anu)
+					ftype = require('file-type')
+					vuss = await ftype.fromStream(voss.body)
+					//console.log(vuss)
+					if (vuss !== undefined) {
+						client.sendMessage(from, await getBuffer(anu), image, { caption: mess.success, quoted: mek })
+					} else {
+						reply('Terjadi kesalahan, silahkan pilih theme lain')
+					}
+					break
+				case 'tahta':
+					if (args.length < 1) return reply('Teksnya om')
+					anu = `https://mhankbarbar.moe/api/htahta?text=${args.join(' ')}&apiKey=${apiKey}`
+					voss = await fetch(anu)
+					ftype = require('file-type')
+					vuss = await ftype.fromStream(voss.body)
+					if (vuss !== undefined) {
+						client.sendMessage(from, await getBuffer(anu), image, { quoted: mek, caption: mess.sucess })
+					} else {
+						reply('Terjadi kesalahan')
 					}
 					break
 				case 'stiker':
@@ -542,7 +420,7 @@ async function starts() {
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
 						reply(mess.wait)
-						keyrmbg = '0RaEy5fQuFB6MEfwCWVf'
+						keyrmbg = 'Your-ApiKey'
 						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp}).then(res => {
 							fs.unlinkSync(media)
 							let buffer = Buffer.from(res.base64img, 'base64')
@@ -585,102 +463,6 @@ async function starts() {
 						reply(`Envie a imagem com o comando ${prefix}sticker ou marque a imagem com o comando ${prefix}sticker`)
 					}
 					break
-					/*------------------------------------------------
-				case 'stiker':
-				case 'sticker':
-					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ran = getRandom('.webp')
-						await ffmpeg(`./${media}`)
-							.input(media)
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
-							})
-							.on('error', function (err) {
-								console.log(`Error : ${err}`)
-								fs.unlinkSync(media)
-								reply(mess.error.stick)
-							})
-							.on('end', function () {
-								console.log('Finish')
-								client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
-							})
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(ran)
-					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
-						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ran = getRandom('.webp')
-						reply(mess.wait)
-						await ffmpeg(`./${media}`)
-							.inputFormat(media.split('.')[1])
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
-							})
-							.on('error', function (err) {
-								console.log(`Error : ${err}`)
-								fs.unlinkSync(media)
-								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(`❌ Falha ao converter ${tipe} em sticker`)
-							})
-							.on('end', function () {
-								console.log('Finish')
-								client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
-							})
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(ran)
-					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ranw = getRandom('.webp')
-						ranp = getRandom('.png')
-						reply(mess.wait)
-						keyrmbg = '0RaEy5fQuFB6MEfwCWVf'
-						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
-							fs.unlinkSync(media)
-							let buffer = Buffer.from(res.base64img, 'base64')
-							fs.writeFileSync(ranp, buffer, (err) => {
-								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
-							})
-							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
-								fs.unlinkSync(ranp)
-								if (err) return reply(mess.error.stick)
-								client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
-							})
-						})
-					/*} else if ((isMedia || isQuotedImage) && colors.includes(args[0])) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ran = getRandom('.webp')
-						await ffmpeg(`./${media}`)
-							.on('start', function (cmd) {
-								console.log('Started :', cmd)
-							})
-							.on('error', function (err) {
-								fs.unlinkSync(media)
-								console.log('Error :', err)
-							})
-							.on('end', function () {
-								console.log('Finish')
-								fs.unlinkSync(media)
-								client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
-								fs.unlinkSync(ran)
-							})
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=${args[0]}@0.0, split [a][b]; [a] palettegen=reserve_transparent=off; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(ran)
-					} else {
-						reply(`Envie a imagem com o comando ${prefix}sticker ou marque a imagem com o comando ${prefix}sticker`)
-					}
-					break
-					----------------------------------------*/
 				case 'gtts':
 					if (args.length < 1) return client.sendMessage(from, 'Não sou vidente, coloca a sigla do idioma aí na humildade', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
@@ -728,8 +510,8 @@ async function starts() {
 					})
 					break
 				case 'hilih':
-					if (args.length < 1) return reply('Cadê o texto?')
-					anu = await fetchJson(`https://mhankbarbar.moe/api/hilih?teks=${body.slice(7)}`, {method: 'get'})
+					if (args.length < 1) return reply('Teksnya mana um?')
+					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/hilih?teks=${body.slice(7)}`, {method: 'get'})
 					reply(anu.result)
 					break*/
 				case 'yt2mp3':
@@ -772,7 +554,7 @@ async function starts() {
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: teks})
 					} catch (e) {
 						console.log(`Error :`, color(e,'red'))
-						reply('Username errado parça')
+						reply('Username errado, parça')
 					}
 					break
 				case 'nulis':
@@ -788,7 +570,7 @@ async function starts() {
 				case 'url2img':
 					tipelist = ['desktop','tablet','mobile']
 					if (args.length < 1) return reply('Tá usando oq?')
-					if (!tipelist.includes(args[0])) return reply('desktop|tablet|mobile')
+					if (!tipelist.includes(args[0])) return reply('Tdesktop|tablet|mobile')
 					if (args.length < 2) return reply('Cadê o URL, seu mamute?')
 					if (!isUrl(args[1])) return reply(mess.error.Iv)
 					reply(mess.wait)
@@ -817,22 +599,6 @@ async function starts() {
 						fs.unlinkSync(rano)*/
 					})
 					break
-
-	/*			case 'tstiker':
-				case 'tsticker':
-					if (args.length < 1) return reply('Tem q mandar o texto junto, burrão')
-					ranp = getRandom('.png')
-					rano = getRandom('.webp')
-					teks = body.slice(9).trim()
-					anu = await fetchJson(`https://mhankbarbar.moe/api/text2image?text=${teks}&apiKey=${apiKey}`, {method: 'get'})
-					if (anu.error) return reply(anu.error)
-					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-						fs.unlinkSync(ranp)
-						if (err) return reply(mess.error.stick)
-						client.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
-						fs.unlinkSync(rano)
-					})
-					break*/
 				case 'tagall':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -841,129 +607,6 @@ async function starts() {
 					teks += '\n\n'
 					for (let mem of groupMembers) {
 						teks += `*#* @${mem.jid.split('@')[0]}\n`
-						members_id.push(mem.jid)
-					}
-					mentions(teks, members_id, true)
-					break
-				case 'tagmamacos':
-					if (!isGroup) return reply(mess.only.group)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					members_id = []
-					
-					teks = "🇧🇷VAI TOMAR NO PEIXE EVOLUTIVO 🇧🇷\n\
-\n\
-ŚÓ USA EVOLUÇÃO QUEM NĀO SƏ GARÅNŢE NØ SOCO 🦍🦍🦍‼️‼️‼️\n\
-\n\
-.                 /¯/)              \\¯\\\n\
-                /¯  /                 \\  ¯\\\n\
-              /    /                     \\    \\\n\
-       /´¯/'   '/´¯`•¸          ¸•´¯`\\'   '\\´¯\\\n\
-    /'/   /    /     /¯\\  /¯`\\    \\   \\    \\  '\\\n\
- (   (   (   ( ¯  /'   ')  ('    '\\ ¯  )   )  )   )\n\
-   \\                       /  \\                        /\n\
-     \\                   /       \\                   /\n\
-      (                  \\        /                  )\n\
-\n\
-🔥🦍🦍🦍 ÅŤÅQŮĘ ĐØ§ MAMACO ĽØĶØ🦍🦍🦍🔥\n\
-👉😎👉\n\
-👉😎👉\n\
- AGORA É NOIS QUE MANDA NESSA PORRA\n\
-☣☣☣👿\n\
-🦍🦍🤝🦍🦍\n\
-\n\
-OS SOLADORES DE LARGATIXA ESTÃO PASSANDO POR VOCÊ 🦎🦎🦎\n\
-▬▬▬.◙.▬▬▬ \n\
-═▂▄▄▓▄▄▂ \n\
-◢◤ █▀🐒▀████▄▄▄▄◢◤ \n\
-█▄ █ー ███▀▀▀▀▀▀▀╬ \n\
-◥█████◤ \n\
-══╩══╩═ Desafiamos todos os largatinho\n\
-╬╬ \n\
-╬╬ \n\
-╬╬ \n\
-╬╬\n\
-A DESAFIAR O GRANDE REI KONG🦍🦍🔥🔥🔥\n\
-\n\
-MITOOOOOOOOOO King  👉😎👉\n\
-SEGUE A RISADA DO MAMACO:\n\
-KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\n\
-LARGATINHA TEM QUE SE FODER E ACABOU PORRA 🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🦍🦍🐒🐒🐒🦍🦍🦍\n\
-\n\
-▕▇▇▇◤▔▔▔▔▔▔▔◥▇▇▇\n\
-▕▇▇▇▏◥▇◣┊◢▇◤▕▇▇▇\n\
-▕▇▇▇▏▃▆▅▎▅▆▃▕▇▇▇\n\
-▕▇▇▇▏╱▔▕▎▔▔╲▕▇▇▇\n\
-▕▇▇▇◣◣▃▅▎▅▃◢◢▇▇▇\n\
-▕▇▇▇▇◣◥▅▅▅◤◢▇▇▇▇\n\
-▕▇▇▇▇▇◣╲▇╱◢▇▇▇▇▇\n\
-▕▇▇▇▇▇▇◣▇◢▇▇▇▇▇▇\n\
-unhe     unhe  unhe unhe \n\
-unhe     unhe  unhe unhe\n\
-unhe                      unhe \n\
-unhe                    unhe \n\
-unhe                  unhe \n\
-unhe                unhe \n\
-unhe              unhe \n\
-unhe            unhe \n\
-unhe          unhe \n\
-unhe        unhe \n\
-unhe       unhe\n\
-\n\
-unhe     unhe  unhe unhe \n\
-unhe     unhe  unhe unhe\n\
-unhe                      unhe \n\
-unhe                    unhe \n\
-unhe                  unhe \n\
-unhe                unhe \n\
-unhe              unhe \n\
-unhe            unhe \n\
-unhe          unhe \n\
-unhe        unhe \n\
-unhe       unhe\n\
-\n\
-unhe     unhe  unhe unhe \n\
-unhe     unhe  unhe unhe\n\
-unhe                      unhe \n\
-unhe                    unhe \n\
-unhe                  unhe \n\
-unhe                unhe \n\
-unhe              unhe \n\
-unhe            unhe \n\
-unhe          unhe \n\
-unhe        unhe \n\
-unhe       unhe\n\
-\n\
-Facção KING 💪🏼🙈 O bonde dos mamaco ataca novamente 🦍🦍🦍 vai chorar 🦎? 😭😭 King acima de tudo, Kong encima de todos ✊✊ tá em shock ⚡⚡ 😯😯😳😳😳😳😳 fica Flinstons aí Godzilla corn0👋👋🥗🥗 Avante King 🏁🏁🏁🏁🏁🏁VAI TOMA NO CU ZILLA\n\
-................./¯/)............(\\¯\\\n\
-.............../¯ ./..............\\. ¯\\\n\
-............./. . /................ \\ . .\\\n\
-......../´¯/' . '/´¯`•¸,....,•´¯`\\' . '\\´¯\\\n\
-..../' /. ./ . ./ . ./¯\\../¯\\. . \\. . \\. .\\ '\\\n\
-..( . ( . ( . ( ¯ ./' . ')..(' . '\\. ¯ ) . ) . ) . )\n\
-...\\ . . . . . . . . . . ./...\\. . . . . . . . . . ./\n\
-.....\\ . . . . . . . . ./......\\. . . . . . . . . /\n\
-.....(. . . . . . . . . \\......./. . . . . . . . . )\n\
-ÅŤÅQŮĘ ĐØ MĄMÅČØ LØKØ💨 AGORA É NOS QUE MANDA NESSA PORRA \n\
-☣☣☣👿\n\
-👹 SAIAM DO GRUPO 👹\n\
-COMEÇOU A SOLAÇÃO \n\
-HÁ! HÁ! HÁ! HÁ! HÁ!\n\
-🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻🦶🏻\n\
-VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ\n\
-▕▇▇▇◤▔▔▔▔▔▔▔◥▇▇▇\n\
-▕▇▇▇▏◥▇◣┊◢▇◤▕▇▇▇\n\
-▕▇▇▇▏▃▆▅▎▅▆▃▕▇▇▇\n\
-▕▇▇▇▏╱▔▕▎▔▔╲▕▇▇▇\n\
-▕▇▇▇◣◣▃▅▎▅▃◢◢▇▇▇\n\
-▕▇▇▇▇◣◥▅▅▅◤◢▇▇▇▇\n\
-▕▇▇▇▇▇◣╲▇╱◢▇▇▇▇▇\n\
-▕▇▇▇▇▇▇◣▇◢▇▇▇▇▇▇\n\
-💨MĀMĀČØ ĽØĶØ💨\n\
-̿̿ ̿̿ ̿̿ ̿'̿'\\̵͇̿̿\\з=🙈=ε/\n\
-\n\
-#teamkong"
-					for (let mem of groupMembers) {
-						//teks += `*#* @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
 					mentions(teks, members_id, true)
@@ -1056,7 +699,7 @@ VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ\n\
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('Quer adicionar quem sem o número??')
-					if (args[0].startsWith('9')) return reply('Tem q começar com o +55')
+					if (args[0].startsWith('08')) return reply('Tem q começar com o +55')
 					try {
 						num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
 						client.groupAdd(from, [num])
@@ -1103,7 +746,7 @@ VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ\n\
                 case 'leave':
                     if (!isGroup) return reply(mess.only.group)
                     if (isGroupAdmins || isOwner) {
-                        client.groupLeave(from)
+                    	client.groupLeave(from)
                     } else {
                         reply(mess.only.admin)
                     }
@@ -1125,7 +768,7 @@ VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ\n\
 				case 'simi':
 					if (args.length < 1) return reply('Cadê o texto?')
 					teks = body.slice(5)
-					anu = await simih(teks) //fetchJson(`https://mhankbarbar.moe/api/samisami?text=${teks}`, {method: 'get'})
+					anu = await simih(teks) //fetchJson(`https://mhankbarbars.herokuapp.com/api/samisami?text=${teks}`, {method: 'get'})
 					//if (anu.error) return reply('Simi ga tau kak')
 					reply(anu)
 					break
@@ -1200,8 +843,7 @@ VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËLØ ĶĪÑĞ ĶØNG ĽØĶØ\n\
 						console.log(muehe)
 						reply(muehe)
 					} else {
-						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
-						//reply('Seu esquizo, esse comando não existe')
+						return //console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
 					}
                            }
 		} catch (e) {
